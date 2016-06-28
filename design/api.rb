@@ -7,6 +7,13 @@
 #   end
 Praxis::ApiDefinition.define do
   # Trait that when included will require a Bearer authorization header to be passed in.
+  info do
+    base_path '/:app_name'
+    base_params do
+      attribute :app_name, String, required: true
+    end
+  end
+
   trait :authorized do
     headers do
       key "Authorization", String, regexp: /^.*Bearer /, required: true
